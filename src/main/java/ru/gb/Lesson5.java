@@ -63,19 +63,18 @@ public class Lesson5 {
 
         thread1.start();
         thread2.start();
-
-        System.out.println("после первого потока ");
-        System.out.println("arr2_1000 " + arr2[1000]);
-        System.out.println("arr2_555000" + arr2[500]);
+        
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         System.arraycopy(arrLeft, 0, arr2, 0, HALF);
         System.arraycopy(arrRight, 0, arr2, HALF, HALF);
 
-        System.out.println("после первого потока ");
-        System.out.println("arr2_1000 " + arr2[1000]);
-        System.out.println("arr2_555000" + arr2[500]);
-
-
+        
         long timeTwo = System.currentTimeMillis() - timeStart2;
 
         System.out.println("time for methodTwo: " + timeTwo);
